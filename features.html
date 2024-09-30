@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Price Benchmark</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Features Page Styles */
+.features-page {
+    padding: 20px;
+    background: #f4f4f4;
+}
+
+.features-intro h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.features-intro p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.features-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.feature-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(33.333% - 20px);
+   
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.feature-card h2 {
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.feature-card p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+}
+
+</style>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Price Benchmark</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="explorepricing.html">Explore Pricing</a>
+            <a href="about.html">About</a>
+            
+        </nav>
+    </header>
+
+    <!-- Features Page Content -->
+    <main class="features-page">
+        <section class="features-intro">
+            <h1>Our Features</h1>
+            <p>Discover the powerful features of Price Benchmark that make it the ultimate tool for procurement. Our platform offers a range of functionalities designed to simplify and enhance the procurement process.</p>
+        </section>
+
+        <section class="features-list">
+            <div class="feature-card">
+                <img src="hand-drawn-cartoon-dollar-sign-illustration_23-2150982962.avif" alt="Automated Price Estimation">
+                <h2>Automated Price Estimation</h2>
+                <p>Get accurate price estimations for your products and services in real-time. Our system analyzes current market data to provide you with precise cost predictions.</p>
+            </div>
+            <div class="feature-card">
+                <img src="bench.jpg" alt="Price Benchmarking">
+                <h2>Price Benchmarking</h2>
+                <p>Compare products and services to find the best deals in the market. Benchmarking helps you identify competitive pricing and make cost-effective decisions.</p>
+            </div>
+            <div class="feature-card">
+                <img src="trend.jpg" alt="Price Trends">
+                <h2>Price Trends</h2>
+                <p>View price history and market trends to make informed decisions. Track price fluctuations and understand market dynamics to optimize your purchasing strategy.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Price Benchmark. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

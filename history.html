@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price History - Price Benchmark</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* History Page Layout */
+.history-page {
+    padding: 20px;
+}
+
+.search-filter, .recently-viewed {
+    margin-bottom: 30px;
+}
+
+.search-filter h2, .recently-viewed h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#search-history {
+    list-style: none;
+    padding: 0;
+}
+
+#search-history li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+#search-history img {
+    width: 80px;
+    height: 60px;
+    margin-right: 15px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(33.333% - 20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product-card p {
+    font-size: 16px;
+    color: #333;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+</style>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Price Benchmark</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="explorepricing.html">Explore Pricing</a>
+            <a href="about.html">About</a>
+            
+        </nav>
+    </header>
+
+    <!-- History Page Content -->
+    <main class="history-page">
+        <!-- Search and Filter Section -->
+        <section class="search-filter">
+            <h2>Search History</h2>
+            <ul id="search-history">
+                <!-- List items will be populated by JavaScript -->
+            </ul>
+        </section>
+
+        <!-- Recently Viewed Products -->
+        <section class="recently-viewed">
+            <h2>Recently Viewed Products</h2>
+            <div class="product-grid" id="recently-viewed-products">
+                <!-- Product cards will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Price Benchmark. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Script for data handling -->
+    <script >// scripts.js
+
+        // Sample data for search history and recently viewed products
+        const searchHistory = [
+            { name: 'Product A', image: 'p3.jpg' },
+            { name: 'Product B', image: 'p1.avif' },
+            { name: 'Product C', image: 'p2.avif' }
+        ];
+        
+        const recentlyViewed = [
+            { name: 'Product X', price: 299, image: 'p3.jpg' },
+            { name: 'Product Y', price: 399, image: 'p2.avif' },
+            { name: 'Product Z', price: 499, image: 'p1.avif' }
+        ];
+        
+        // Populate search history
+        function populateSearchHistory(history) {
+            const searchHistoryList = document.getElementById('search-history');
+            searchHistoryList.innerHTML = '';
+            history.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <span>${item.name}</span>
+                `;
+                searchHistoryList.appendChild(li);
+            });
+        }
+        
+        // Populate recently viewed products
+        function populateRecentlyViewed(products) {
+            const productGrid = document.getElementById('recently-viewed-products');
+            productGrid.innerHTML = '';
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>$${product.price}</p>
+                `;
+                productGrid.appendChild(card);
+            });
+        }
+        
+        // Populate the page with data on load
+        populateSearchHistory(searchHistory);
+        populateRecentlyViewed(recentlyViewed);
+        </script>
+</body>
+</html>

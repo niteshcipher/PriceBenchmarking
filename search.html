@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+
+.main-nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #45a049;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.categories {
+  background-color: #e5e5e5;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.categories a {
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  display: flex;
+}
+
+.filters {
+  width: 250px;
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  margin-bottom: 15px;
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filter-group h4 {
+  margin-bottom: 5px;
+}
+
+button {
+  padding: 10px;
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.results {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+  margin: 20px;
+}
+
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.result-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.result-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.result-card h3 {
+  margin: 10px 0;
+}
+
+.price-list {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.price-list p {
+  margin: 5px 0;
+}
+
+.conclusion {
+  font-weight: bold;
+  color: green;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.sorting-options {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+#priceLabel {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+</style>
+<body>
+    <header>
+        <div class="logo">Price Benchmark</div>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="explorepricing.html">Explore Pricing</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Enter Make/Model, Specifications or Service">
+            <button onclick="performSearch()">Search</button>
+        </div>
+    </header>
+    <main>
+        <!-- Sidebar Filters -->
+        <aside class="filters">
+            <h2>Filters</h2>
+            <div class="filter-group">
+              <h4>Exact Make/Model</h4>
+              <input type="text" id="makeModel" placeholder="Enter Make or Model">
+            </div>
+
+            <div class="filter-group">
+              <h4>Most Relevant Specifications</h4>
+              <input type="text" id="specifications" placeholder="Enter specifications (e.g., Battery, Size)">
+            </div>
+
+            <div class="filter-group">
+              <h4>Service Type</h4>
+              <select id="serviceType">
+                <option value="">Select a Service</option>
+                <option value="IT Support">IT Support</option>
+                <option value="Delivery">Delivery</option>
+                <option value="Maintenance">Maintenance</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <h4>Location</h4>
+              <input type="text" id="location" placeholder="Enter City or Postal Code">
+            </div>
+
+            <div class="filter-group">
+              <h4>Price Range</h4>
+              <input type="range" id="priceRange" min="0" max="2000" value="500" oninput="updatePriceLabel(this.value)">
+              <span id="priceLabel">$500</span>
+            </div>
+
+            <div class="filter-group">
+              <h4>Color Family</h4>
+              <label><input type="checkbox" value="Black"> Black</label><br>
+              <label><input type="checkbox" value="White"> White</label><br>
+              <label><input type="checkbox" value="Grey"> Grey</label>
+            </div>
+
+            <button onclick="applyFilters()">Apply Filters</button>
+        </aside>
+
+        <!-- Results Section -->
+        <section class="results">
+            <h2>Laptops by Make/Model</h2>
+            <div class="sorting-options">
+                <select id="sortPrice" onchange="sortResults()">
+                    <option value="">Sort by Price</option>
+                    <option value="low">Low to High</option>
+                    <option value="high">High to Low</option>
+                </select>
+            </div>
+            <div id="resultsContainer" class="results-container"></div>
+        </section>
+    </main>
+
+  <script>
+    // Dummy data for search results
+const searchResults = [
+
+  {
+    type: 'Product',
+    name: 'MacBook Pro 14',
+    makeModel: 'Apple MacBook Pro 14 2021',
+    image: 'https://i.pinimg.com/564x/18/30/7d/18307dfde0f655618d822607bda8c931.jpg'  ,
+    prices: [
+      { store: 'Amazon', price: 1999, link: 'https://amazon.com' },
+      { store: 'Apple Store', price: 1999, link: 'https://apple.com' },
+      { store: 'Best Buy', price: 2099, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 2100, link: 'apple.html' },
+    ]
+  },
+  {
+    type: 'Product',
+    name: 'Dell XPS 13',
+    makeModel: 'Dell XPS 13 2023',
+    image: 'https://i.pinimg.com/236x/5a/ba/91/5aba912279100992530ef2949b86f9c0.jpg',
+    prices: [
+      { store: 'Amazon', price: 1299, link: 'https://amazon.com' },
+      { store: 'Dell Store', price: 1299, link: 'https://dell.com' },
+      { store: 'Best Buy', price: 1349, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 1350, link: '#' },
+    ]
+  },
+  {
+    type: 'Product',
+    name: 'Lenovo ThinkPad X1 Carbon',
+    makeModel: 'Lenovo ThinkPad X1 Carbon Gen 10',
+    image: 'https://i.pinimg.com/236x/67/31/a6/6731a6b277cdc2905ce1bb20928122ac.jpg',
+    prices: [
+      { store: 'Amazon', price: 1499, link: 'https://amazon.com' },
+      { store: 'Lenovo Store', price: 1499, link: 'https://lenovo.com' },
+      { store: 'Best Buy', price: 1599, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 1600, link: '#' },
+    ]
+  },
+  {
+    type: 'Product',
+    name: 'HP Spectre x360',
+    makeModel: 'HP Spectre x360 2023',
+    image: 'https://i.pinimg.com/236x/49/a5/23/49a52381639c73ca79afe01a2593aff1.jpg',
+    prices: [
+      { store: 'Amazon', price: 1299, link: 'https://amazon.com' },
+      { store: 'HP Store', price: 1299, link: 'https://hp.com' },
+      { store: 'Best Buy', price: 1349, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 1400, link: '#' },
+    ]
+  },
+  {
+    type: 'Product',
+    name: 'ASUS ROG Zephyrus G14',
+    makeModel: 'ASUS ROG Zephyrus G14 (2023)',
+    image: 'https://i.pinimg.com/236x/0c/65/6b/0c656bd118dbb75da4c1eb391d02974c.jpg',
+    prices: [
+      { store: 'Amazon', price: 1499, link: 'https://amazon.com' },
+      { store: 'ASUS Store', price: 1499, link: 'https://asus.com' },
+      { store: 'Best Buy', price: 1599, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 1600, link: '#' },
+    ]
+  },
+  {
+    type: 'Product',
+    name: 'Microsoft Surface Laptop 5',
+    makeModel: 'Microsoft Surface Laptop 5',
+    image: 'https://i.pinimg.com/236x/d1/ae/bd/d1aebdcbaa85ff8182f986d505b6bf2a.jpg',
+    prices: [
+      { store: 'Amazon', price: 999, link: 'https://amazon.com' },
+      { store: 'Microsoft Store', price: 999, link: 'https://microsoft.com' },
+      { store: 'Best Buy', price: 1049, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 1050, link: '#' },
+    ]
+  },
+  {
+    type: 'Product',
+    name: 'Razer Blade 15',
+    makeModel: 'Razer Blade 15 2023',
+    image: 'https://i.pinimg.com/236x/3a/9f/4d/3a9f4d5179808b098801fa96ea1509e9.jpg',
+    prices: [
+      { store: 'Amazon', price: 2299, link: 'https://amazon.com' },
+      { store: 'Razer Store', price: 2299, link: 'https://razer.com' },
+      { store: 'Best Buy', price: 2399, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 2400, link: '#' },
+    ]
+  },
+  {
+    type: 'Product',
+    name: 'Acer Swift 5',
+    makeModel: 'Acer Swift 5 (2023)',
+    image: 'https://i.pinimg.com/236x/9b/a6/d1/9ba6d162a5cfd1ac2e48c9666b9ca5f9.jpg',
+    prices: [
+      { store: 'Amazon', price: 999, link: 'https://amazon.com' },
+      { store: 'Acer Store', price: 999, link: 'https://acer.com' },
+      { store: 'Best Buy', price: 1099, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 1100, link: '#' },
+    ]
+  },
+  {
+    type: 'Product',
+    name: 'LG Gram 17',
+    makeModel: 'LG Gram 17 2023',
+    image: 'https://i.pinimg.com/736x/6c/27/40/6c27402a277555cb85125a3c753e5281.jpg',
+    prices: [
+      { store: 'Amazon', price: 1799, link: 'https://amazon.com' },
+      { store: 'LG Store', price: 1799, link: 'https://lg.com' },
+      { store: 'Best Buy', price: 1899, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 1900, link: '#' },
+    ]
+  },
+  {
+    type: 'Product',
+    name: 'Samsung Galaxy Book Pro 360',
+    makeModel: 'Samsung Galaxy Book Pro 360 (2023)',
+    image: 'https://i.pinimg.com/236x/a3/fe/d2/a3fed241a2344b6fb688784061915c05.jpg',
+    prices: [
+      { store: 'Amazon', price: 1399, link: 'https://amazon.com' },
+      { store: 'Samsung Store', price: 1399, link: 'https://samsung.com' },
+      { store: 'Best Buy', price: 1449, link: 'https://bestbuy.com' },
+      { store: 'Local Store', price: 1450, link: '#' },
+    ]
+  }
+
+
+
+
+];
+
+
+
+// Function to perform search
+function performSearch() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const filteredResults = searchResults.filter(result =>
+    result.name.toLowerCase().includes(query) ||
+    result.makeModel.toLowerCase().includes(query)
+  );
+  displayResults(filteredResults);
+}
+
+// Function to display the results
+function displayResults(results) {
+  const container = document.getElementById('resultsContainer');
+  container.innerHTML = ''; // Clear previous results
+
+
+  results.forEach(result => {
+    const card = document.createElement('div');
+    card.classList.add('result-card');
+
+    card.innerHTML = `
+      <img src="${result.image}" alt="${result.name}">
+      <h3>${result.name} (${result.makeModel})</h3>
+      <div class="price-list">
+        ${result.prices.map(price => `
+          <p><strong>${price.store}:</strong> $${price.price} 
+          <a href="${price.link}" target="_blank">Buy</a></p>`).join('')}
+      </div>
+      <div class="conclusion">
+        Best Price: $${Math.min(...result.prices.map(p => p.price))}
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+// Sorting functionality
+function sortResults() {
+  const sortOption = document.getElementById('sortPrice').value;
+  let sortedResults = [...searchResults];
+
+  if (sortOption === 'low') {
+    sortedResults.sort((a, b) => Math.min(...a.prices.map(p => p.price)) - Math.min(...b.prices.map(p.price)));
+  } else if (sortOption === 'high') {
+    sortedResults.sort((a, b) => Math.min(...b.prices.map(p.price)) - Math.min(...a.prices.map(p.price)));
+  }
+
+  displayResults(sortedResults);
+}
+
+// Filter by price range
+function applyFilters() {
+  const priceRange = document.getElementById('priceRange').value;
+  const filteredResults = searchResults.filter(result =>
+    result.prices.some(price => price.price <= priceRange)
+  );
+  displayResults(filteredResults);
+}
+
+// Update price label as slider moves
+function updatePriceLabel(value) {
+  document.getElementById('priceLabel').textContent = `$${value}`;
+}
+
+// Display results when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  displayResults(searchResults);
+});
+// Function to perform search
+function performSearch() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const filteredResults = searchResults.filter(result =>
+    result.name.toLowerCase().includes(query) ||
+    result.makeModel.toLowerCase().includes(query)
+  );
+  displayResults(filteredResults);
+}
+
+// Function to display the results
+function displayResults(results) {
+  const container = document.getElementById('resultsContainer');
+  container.innerHTML = ''; // Clear previous results
+
+  results.forEach(result => {
+    const card = document.createElement('div');
+    card.classList.add('result-card');
+
+    card.innerHTML = `
+      <img src="${result.image}" alt="${result.name}">
+      <h3>${result.name} (${result.makeModel})</h3>
+      <div class="price-list">
+        ${result.prices.map(price => `
+          <p><strong>${price.store}:</strong> $${price.price} 
+          <a href="${price.link}" target="_blank">Buy</a></p>`).join('')}
+      </div>
+      <div class="conclusion">
+        Best Price: $${Math.min(...result.prices.map(p => p.price))}
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+// Sorting functionality
+function sortResults() {
+  const sortOption = document.getElementById('sortPrice').value;
+  let sortedResults = [...searchResults];
+
+  if (sortOption === 'low') {
+    sortedResults.sort((a, b) => Math.min(...a.prices.map(p => p.price)) - Math.min(...b.prices.map(p.price)));
+  } else if (sortOption === 'high') {
+    sortedResults.sort((a, b) => Math.min(...b.prices.map(p.price)) - Math.min(...a.prices.map(p.price)));
+  }
+
+  displayResults(sortedResults);
+}
+
+// Filter by price range
+function applyFilters() {
+  const priceRange = document.getElementById('priceRange').value;
+  const filteredResults = searchResults.filter(result =>
+    result.prices.some(price => price.price <= priceRange)
+  );
+  displayResults(filteredResults);
+}
+
+// Update price label as slider moves
+function updatePriceLabel(value) {
+  document.getElementById('priceLabel').textContent = `$${value}`;
+}
+
+// Display results when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  displayResults(searchResults);
+});
+
+
+  </script>
+</body>
+</html>

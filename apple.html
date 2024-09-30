@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple MacBook Pro 14 - Product Details</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+ 
+  .main-nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+  }
+
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .product-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+    max-width: 1200px;
+  }
+
+  /* Slider container */
+  .slider-container {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .slider {
+    position: relative;
+    max-width: 100%;
+    
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .slides img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  /* Slider navigation */
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    background-color: rgba(10, 9, 9, 0.5);
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+
+  /* Dots (slide indicators) */
+  .dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .dot {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .active-dot {
+    background-color: #717171;
+  }
+
+  /* Product Info */
+  .product-info {
+    width: 75%;
+    height: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-info h1 {
+    margin-bottom: 10px;
+  }
+
+  .product-info p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+
+  .price-list {
+    margin-bottom: 20px;
+  }
+
+  .price-list p {
+    margin: 5px 0;
+  }
+
+  .price-history {
+    margin-bottom: 20px;
+  }
+
+  .buy-button {
+    padding: 15px 25px;
+    background-color: #45a049;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .buy-button:hover {
+    background-color: #3d8b40;
+  }
+
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  /* Additional sections like specs, reviews, FAQ */
+  .specs, .reviews, .faq {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .specs table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .specs th, .specs td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .specs th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .reviews p, .faq div {
+    margin: 10px 0;
+  }
+
+  /* Related Products Section */
+  .related-products {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .related-products h3 {
+    margin-bottom: 10px;
+  }
+
+  .related-products img {
+    width: 100px;
+    margin: 10px;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <header>
+    <div class="logo">Price Benchmark</div>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="explorepricing.html">Explore Pricing</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="product-container">
+      <!-- Slider Container -->
+      <div class="slider-container">
+        <div class="slider">
+          <div class="slides">
+            <img src="https://i.pinimg.com/564x/18/30/7d/18307dfde0f655618d822607bda8c931.jpg" alt="Apple MacBook Pro 14">
+            <img src="https://m.media-amazon.com/images/I/61x8BQ8-5wL._SX679_.jpg" alt="MacBook Pro Keyboard">
+            <img src="https://m.media-amazon.com/images/I/71JsSoIns1L._SX679_.jpg" alt="MacBook Display">
+          </div>
+          <span class="prev" onclick="moveSlide(-1)">&#10094;</span>
+          <span class="next" onclick="moveSlide(1)">&#10095;</span>
+        </div>
+        <div class="dots">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <h1>Apple MacBook Pro 14 (2021)</h1>
+        <p>
+          The Apple MacBook Pro 14-inch (2021) is designed for professionals who need high-end performance. With the M1 Pro or M1 Max chips, it handles heavy tasks like video editing, 3D rendering, and coding with ease. The 14.2-inch Liquid Retina XDR display, all-day battery life, and excellent port selection make it a perfect tool for creative professionals.
+        </p>
+
+        <div class="price-list">
+          <h3>Prices:</h3>
+          <p><strong>Amazon:</strong> $1999 <a href="https://amazon.com" target="_blank">Buy</a></p>
+          <p><strong>Apple Store:</strong> $1999 <a href="https://apple.com" target="_blank">Buy</a></p>
+          <p><strong>Best Buy:</strong> $2099 <a href="https://bestbuy.com" target="_blank">Buy</a></p>
+          <p><strong>Local Store:</strong> $2100 <a href="#">Buy</a></p>
+        </div>
+
+        <div class="price-history">
+          <h3>Price History</h3>
+          <p>Lowest Price: $1899 (on 20th August 2023)</p>
+          <p>Highest Price: $2199 (on 10th July 2023)</p>
+        </div>
+
+        <a class="buy-button" href="https://www.amazon.com/Apple-MacBook-Laptop-14%E2%80%91core-30%E2%80%91core/dp/B0CM5MKMD4/ref=sr_1_1?crid=28VTSENEFZ9HI&dib=eyJ2IjoiMSJ9.cdTuuKC9tVDxW7dPmtd1VrPzHW8WrrSv-6TxcxzjtizvpqaGTU9UAIcrlaN4gAIpRoW_yDw7SnC1lFEV_X2oOFV_D3fzmrxlGsk6jfbIklToQ2ctaYludnMXa3CPOnWXSo8-glHLzLmItHX-toSh4hurJ4O5jjmZtwHSBx18f75EHDE9HNtF4ERt1U18GnWsFUWAdxqjE-7hGPtp2_77clCxjA5xyRrQIa5wK-hMEK4.u00eN_kqvOkFm11KXYSZpaJRm3Xuqp-Trrtiet9VPdc&dib_tag=se&keywords=apple+macbook+14+pro&qid=1727518306&sprefix=apple+macbook+14+pro%2Caps%2C421&sr=8-1" target="_blank">Buy on Amazon</a>
+      </div>
+    </div>
+
+    <!-- Specifications Section -->
+    <section class="specs">
+      <h2>Specifications</h2>
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>Details</th>
+        </tr>
+        <tr>
+          <td>Processor</td>
+          <td>M1 Pro or M1 Max</td>
+        </tr>
+        <tr>
+          <td>RAM</td>
+          <td>16GB (configurable to 64GB)</td>
+        </tr>
+        <tr>
+          <td>Storage</td>
+          <td>512GB SSD (up to 8TB)</td>
+        </tr>
+        <tr>
+          <td>Display</td>
+          <td>14.2-inch Liquid Retina XDR</td>
+        </tr>
+        <tr>
+          <td>Battery Life</td>
+          <td>Up to 17 hours</td>
+        </tr>
+        <tr>
+          <td>Weight</td>
+          <td>3.5 pounds (1.6 kg)</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+      <h2>Customer Reviews</h2>
+      <p>"Fantastic performance, and the display is incredible!"</p>
+      <p>"Battery life exceeded my expectations."</p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div>
+        <strong>Q:</strong> Does it support 4K external displays?<br>
+        <strong>A:</strong> Yes, the MacBook Pro 14 supports up to 2 external 4K displays.
+      </div>
+      <div>
+        <strong>Q:</strong> Is there an SD card slot?<br>
+        <strong>A:</strong> Yes, it includes an SDXC card slot for media transfer.
+      </div>
+      <div>
+        <strong>Q:</strong> What's the battery life?<br>
+        <strong>A:</strong> It offers up to 17 hours of battery life for web browsing or video playback.
+      </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="related-products">
+      <h3>Related Products</h3>
+      <a href="product_macbook_air.html"><img src="https://m.media-amazon.com/images/I/316ArzLeJ2L._SY445_SX342_QL70_FMwebp_.jpg" alt="MacBook Air"></a>
+      <a href="product_macbook_pro_16.html"><img src="https://m.media-amazon.com/images/I/618d5bS2lUL._SX522_.jpg" alt="MacBook Pro 16"></a>
+      <a href="product_ipad_pro.html"><img src="https://m.media-amazon.com/images/I/416l9Sm-30L._SY445_SX342_QL70_FMwebp_.jpg" alt="iPad Pro"></a>
+    </section>
+  </main>
+
+  <br>
+  <br>
+
+
+  <footer>
+    &copy; 2023 Price Benchmark. All rights reserved.
+  </footer>
+
+  <script>
+    let currentSlideIndex = 0;
+    showSlides(currentSlideIndex);
+
+    function moveSlide(n) {
+      showSlides(currentSlideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(currentSlideIndex = n - 1);
+    }
+
+    function showSlides(n) {
+      let slides = document.querySelectorAll('.slides img');
+      let dots = document.querySelectorAll('.dot');
+
+      if (n >= slides.length) { currentSlideIndex = 0; }
+      if (n < 0) { currentSlideIndex = slides.length - 1; }
+
+      slides.forEach(slide => slide.style.display = 'none');
+      dots.forEach(dot => dot.classList.remove('active-dot'));
+
+      slides[currentSlideIndex].style.display = 'block';
+      dots[currentSlideIndex].classList.add('active-dot');
+    }
+  </script>
+</body>
+</html>
+

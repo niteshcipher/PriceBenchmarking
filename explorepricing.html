@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Pricing - Price Benchmarking</title>
+    <link rel="stylesheet" href="styles.css">
+  
+</head>
+<style>
+    .trending-results {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+}
+
+.trending-results h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: rgb(22, 145, 151);
+    font-size: 2em;
+    color: #333;
+    
+}
+
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.scheme-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.scheme-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.scheme-card h3 {
+    font-size: 1.5em;
+    margin: 10px;
+    color: #333;
+}
+
+.scheme-card p {
+    margin: 10px;
+    color: #555;
+}
+
+.view-scheme-btn, .view-product-btn {
+    margin: 10px;
+    padding: 10px 15px;
+    background-color: #45a049;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.view-scheme-btn:hover, .view-product-btn:hover {
+    background-color: #3d8b40;
+}
+
+.scheme-card:hover {
+    transform: scale(1.05);
+}
+
+</style>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Price Benchmark</div>
+        <nav>
+           
+             
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="explore-pricing.html">Explore Pricing</a> <!-- corrected link -->
+            <a href="about.html">About</a>
+            <a href="dashboard.html" class="login-btn">profile</a>
+            
+        </nav>
+    </header>
+    
+
+    <!-- Main Search Section -->
+    <section class="pricing-search">
+        
+        <form action="search.html">
+            <h1>Explore Product & Service Pricing</h1>
+            <p>Search for the best prices, compare products, and make informed decisions.</p>
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" placeholder="Enter product name, model, or specifications" id="search-input">
+                <button class="search-btn">Search</button>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="filters">
+                <h3>Filter Results</h3>
+                
+                <!-- Added labels for accessibility -->
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="all">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="services">Services</option>
+                    <option value="hardware">Hardware</option>
+                </select>
+                
+                <label for="price-range">Price Range:</label>
+                <select id="price-range">
+                    <option value="all">All Price Ranges</option>
+                    <option value="0-500">$0 - $500</option>
+                    <option value="500-1000">$500 - $1000</option>
+                    <option value="1000+">$1000+</option>
+                </select>
+                
+                <label for="sort-by">Sort By:</label>
+                <select id="sort-by">
+                    <option value="relevance">Sort by Relevance</option>
+                    <option value="price-low-high">Price: Low to High</option>
+                    <option value="price-high-low">Price: High to Low</option>
+                </select>
+            </div>
+        </form>
+    </section>
+
+    <!-- Results Section -->
+    <section class="trending-results">
+        <h2>Recent Schemes & Trending Products</h2>
+    
+        <div class="trending-grid">
+            <div class="scheme-card">
+                <img src="https://i.pinimg.com/236x/6c/ea/d7/6cead7d763d6fd782458f87f5c1ce49a.jpg" alt="Scheme 1">
+                <h3>Get up to 20% off on your first purchase!</h3>
+               
+                <button class="view-scheme-btn">Learn More</button>
+            </div>
+    
+            <div class="scheme-card">
+                <img src="https://i.pinimg.com/236x/2d/af/f9/2daff9b221a0ee4a093bf4de43b50d97.jpg" alt="Scheme 2">
+                <h3>Free shipping on the orders over $100.</h3>
+               
+                <button class="view-scheme-btn">Learn More</button>
+            </div>
+    
+            <div class="scheme-card">
+                <img src="https://th.bing.com/th/id/OIP.dmMf1nVklf7R7BJHPzNYpgHaE8?w=270&h=180&c=7&r=0&o=5&pid=1.7" alt="Scheme 3">
+                <h3>Limited time offer under : $299. Get discount on your purchase!</h3>
+
+                <button class="view-product-btn">View Details</button>
+            </div>
+    
+            <div class="scheme-card">
+                <img src="https://th.bing.com/th/id/OIP.62rZw7puzMOWm-W0_C_v3gHaE8?w=248&h=180&c=7&r=0&o=5&pid=1.7" alt="Scheme 4">
+                <h3>Limited time offer under: $399. Get discount on your purchase!</h3>
+                <button class="view-product-btn">View Details</button>
+            </div>
+            <div class="scheme-card">
+                <img src="https://th.bing.com/th/id/OIP.ufryWthLUQzXqYfkZpV2bQHaE8?w=272&h=181&c=7&r=0&o=5&pid=1.7" alt="Scheme 4">
+                <h3> Products that are available at its lowest price ever recorded.</h3>
+                <button class="view-product-btn">View Details</button>
+            </div>
+        </div>
+    </section>
+
+    <a href="dashboard.html" class="back-button">Back</a>
+
+    
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Price Benchmark. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

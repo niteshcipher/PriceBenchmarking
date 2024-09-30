@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Price Benchmarking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+</head>
+<style>
+   .sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.profile h2 {
+    margin-bottom: 5px;
+    font-size: 1.5em;
+}
+
+.profile p {
+    font-size: 0.9em;
+    color: #a89595;
+
+}
+
+.sidebar nav a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.sidebar nav i {
+    margin-right: 10px;
+}
+
+/* Main content styles */
+.dashboard {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+.dashboard-header {
+    margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+    font-size: 2em;
+    
+}
+
+.dashboard-header p {
+    font-size: 1em;
+    
+}
+
+/* Dashboard grid and cards */
+.dashboard-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    flex: 1 1 200px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.card p {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.card i {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 10px;
+} 
+/* New sections */
+.recent-activities,
+.quick-actions,
+.notifications,
+.summary-chart {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.recent-activities h2,
+.quick-actions h2,
+.notifications h2,
+.summary-chart h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.recent-activities ul,
+.notifications ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-activities li,
+.notifications li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.recent-activities i,
+.notifications i {
+    margin-right: 10px;
+    color: #007bff;
+}
+
+.quick-actions button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quick-actions button:hover {
+    background-color: #0056b3;
+}
+
+.chart-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #eee;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 1.2em;
+}
+</style>
+<body>
+    <aside class="sidebar">
+        <div class="profile">
+            <img src="hand-drawn-cartoon-dollar-sign-illustration_23-2150982962.avif" alt="Profile Picture" class="profile-pic"> <!-- Profile Picture -->
+            <h2>Sparxplorer</h2>
+            <p>Price Benchmarking Expert</p>
+        </div>
+        <nav>
+            <a href="explorepricing.html"><i class="fas fa-search"></i> Search Products</a>
+            <a href="history.html"><i class="fas fa-history"></i> View History</a>
+            <a href="#"><i class="fas fa-star"></i> Watchlist</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard">
+        <section class="dashboard-header">
+            <h1>Welcome, John!</h1>
+            <p>Your recent activity at a glance:</p>
+        </section>
+
+        <section class="dashboard-grid">
+            <div class="card">
+                <i class="fas fa-box"></i> <!-- Icon for the card -->
+                <h3>Total Products Searched</h3>
+                <p>120</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-bell"></i> <!-- Icon for the card -->
+                <h3>Price Alerts Set</h3>
+                <p>15</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-line"></i> <!-- Icon for the card -->
+                <h3>Market Trends Viewed</h3>
+                <p>45</p>
+            </div>
+        </section>
+        <br>
+
+        <!-- New Sections -->
+        <section class="recent-activities">
+            <h2>Recent Activities</h2>
+            <ul>
+                <li><i class="fas fa-search"></i> Searched for "Smartphones" - 10 minutes ago</li>
+                <li><i class="fas fa-bell"></i> Price alert set for "Laptop" - 2 hours ago</li>
+                <li><i class="fas fa-chart-line"></i> Viewed market trends for "Electronics" - 5 hours ago</li>
+            </ul>
+        </section>
+
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+            <button><i class="fas fa-plus"></i> Add New Product</button>
+            <button><i class="fas fa-bell"></i> Set Price Alert</button>
+            <button><i class="fas fa-chart-line"></i> View Trends</button>
+        </section>
+
+        <section class="notifications">
+            <h2>Notifications</h2>
+            <ul>
+                <li><i class="fas fa-info-circle"></i> Your price alert for "Smartphone" has been triggered!</li>
+                <li><i class="fas fa-info-circle"></i> New market trend report available for "Electronics".</li>
+            </ul>
+        </section>
+
+        <section class="summary-chart">
+            <h2>Activity Summary</h2>
+            <!-- Example chart (you can use a library like Chart.js or Google Charts for real data) -->
+            <div class="chart-placeholder">
+                <p>Chart will go here.</p>
+            </div>
+        </section>
+    </main>
+
+        
+</body>
+</html>
